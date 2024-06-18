@@ -1,0 +1,56 @@
+1718714825902|10|statement|select * from information_schema.sequences
+1718714825944|22|statement|create table adresse (adresse_id bigserial not null, code_postal integer not null, complement_adresse varchar(255), ville varchar(255), primary key (adresse_id))
+1718714825950|4|statement|create table ecole (ecole_id bigserial not null, domaine_ecole varchar(50) not null, nom_ecole varchar(50) not null, adresse_id bigint, primary key (ecole_id))
+1718714825954|3|statement|create table etudiant (etudiant_id bigserial not null, nom varchar(50) not null, prenom varchar(50) not null, ecole_id bigint, primary key (etudiant_id))
+1718714825956|1|statement|create table etudiant_projet (projet_id bigint not null, etudiant_id bigint not null)
+1718714825960|3|statement|create table projet (projet_id bigserial not null, nom_projet varchar(255), primary key (projet_id))
+1718714825963|2|statement|create index index_ville on adresse (ville)
+1718714825966|2|statement|create index index_nom on ecole (nom_ecole)
+1718714825969|2|statement|alter table if exists ecole drop constraint if exists UK_1gdq2wbxry0ag0jo42plogwfh
+1718714825973|2|statement|alter table if exists ecole add constraint UK_1gdq2wbxry0ag0jo42plogwfh unique (adresse_id)
+1718714825978|4|statement|create index index_nom on etudiant (nom)
+1718714825985|2|statement|create index index_ecole on etudiant (ecole_id)
+1718714825988|2|statement|create index index_nom_projet on projet (nom_projet)
+1718714825994|4|statement|alter table if exists ecole add constraint FK9ifsc3vh952adidu8vjqv5qx3 foreign key (adresse_id) references adresse
+1718714825995|1|statement|alter table if exists etudiant add constraint FKmvneq4dvp0lioe8nmuieuw44j foreign key (ecole_id) references ecole
+1718714825997|1|statement|alter table if exists etudiant_projet add constraint FKm8flcm377tl2u6v4xaaworkse foreign key (etudiant_id) references etudiant
+1718714826000|2|statement|alter table if exists etudiant_projet add constraint FK8cft2abbt0kpxr35e3f706w81 foreign key (projet_id) references projet
+1718719277728|5|statement|select e1_0.etudiant_id,e1_0.ecole_id,e1_0.nom,e1_0.prenom from etudiant e1_0
+1718719277737|1|commit|
+1718719376271|2|statement|select e1_0.etudiant_id,e1_0.ecole_id,e1_0.nom,e1_0.prenom,p1_0.etudiant_id,p1_1.projet_id,p1_1.nom_projet from etudiant e1_0 left join etudiant_projet p1_0 on e1_0.etudiant_id=p1_0.etudiant_id left join projet p1_1 on p1_1.projet_id=p1_0.projet_id where e1_0.etudiant_id=1
+1718719376310|4|statement|insert into etudiant (ecole_id,nom,prenom) values (NULL,'Thai','Yvan')
+1718719376322|0|statement|select p1_0.projet_id,p1_0.nom_projet,e1_0.projet_id,e1_1.etudiant_id,e1_1.ecole_id,e1_1.nom,e1_1.prenom from projet p1_0 left join etudiant_projet e1_0 on p1_0.projet_id=e1_0.projet_id left join etudiant e1_1 on e1_1.etudiant_id=e1_0.etudiant_id where p1_0.projet_id=1
+1718719376326|1|statement|insert into projet (nom_projet) values ('Projet')
+1718719376327|0|statement|select p1_0.projet_id,p1_0.nom_projet,e1_0.projet_id,e1_1.etudiant_id,e1_1.ecole_id,e1_1.nom,e1_1.prenom from projet p1_0 left join etudiant_projet e1_0 on p1_0.projet_id=e1_0.projet_id left join etudiant e1_1 on e1_1.etudiant_id=e1_0.etudiant_id where p1_0.projet_id=2
+1718719376328|0|statement|insert into projet (nom_projet) values ('Projet 2')
+1718719376374|2|statement|insert into etudiant_projet (etudiant_id,projet_id) values (1,1)
+1718719376375|0|statement|insert into etudiant_projet (etudiant_id,projet_id) values (1,2)
+1718719376379|1|commit|
+1718719384994|0|statement|select e1_0.etudiant_id,e1_0.ecole_id,e1_0.nom,e1_0.prenom from etudiant e1_0
+1718719385007|0|commit|
+1718719385013|0|statement|select p1_0.etudiant_id,p1_1.projet_id,p1_1.nom_projet from etudiant_projet p1_0 join projet p1_1 on p1_1.projet_id=p1_0.projet_id where p1_0.etudiant_id=1
+1718719399965|0|statement|select e1_0.etudiant_id,e1_0.ecole_id,e1_0.nom,e1_0.prenom from etudiant e1_0
+1718719399966|0|commit|
+1718719399967|0|statement|select p1_0.etudiant_id,p1_1.projet_id,p1_1.nom_projet from etudiant_projet p1_0 join projet p1_1 on p1_1.projet_id=p1_0.projet_id where p1_0.etudiant_id=1
+1718719735209|0|statement|select e1_0.etudiant_id,e1_0.ecole_id,e1_0.nom,e1_0.prenom from etudiant e1_0
+1718719735210|0|commit|
+1718719735212|1|statement|select p1_0.etudiant_id,p1_1.projet_id,p1_1.nom_projet from etudiant_projet p1_0 join projet p1_1 on p1_1.projet_id=p1_0.projet_id where p1_0.etudiant_id=1
+1718719822833|5|statement|select * from information_schema.sequences
+1718719822868|2|statement|create index index_nom on etudiant (nom)
+1718719822893|0|statement|select * from "public"."adresse" where 1=0
+1718719822908|0|statement|select * from "public"."ecole" where 1=0
+1718719822922|0|statement|select * from "public"."etudiant" where 1=0
+1718719822927|0|statement|select * from "public"."projet" where 1=0
+1718719834858|2|statement|select e1_0.etudiant_id,e1_0.ecole_id,e1_0.nom,e1_0.prenom from etudiant e1_0
+1718719834885|0|commit|
+1718719834897|2|statement|select p1_0.etudiant_id,p1_1.projet_id,p1_1.nom_projet from etudiant_projet p1_0 join projet p1_1 on p1_1.projet_id=p1_0.projet_id where p1_0.etudiant_id=1
+1718720216690|1|statement|select e1_0.etudiant_id,e1_0.ecole_id,e1_0.nom,e1_0.prenom,p1_0.etudiant_id,p1_1.projet_id,p1_1.nom_projet from etudiant e1_0 left join etudiant_projet p1_0 on e1_0.etudiant_id=p1_0.etudiant_id left join projet p1_1 on p1_1.projet_id=p1_0.projet_id where e1_0.etudiant_id=1
+1718720216695|0|statement|select e1_0.projet_id,e1_1.etudiant_id,e1_1.ecole_id,e1_1.nom,e1_1.prenom from etudiant_projet e1_0 join etudiant e1_1 on e1_1.etudiant_id=e1_0.etudiant_id where e1_0.projet_id=2
+1718720216696|0|statement|select e1_0.projet_id,e1_1.etudiant_id,e1_1.ecole_id,e1_1.nom,e1_1.prenom from etudiant_projet e1_0 join etudiant e1_1 on e1_1.etudiant_id=e1_0.etudiant_id where e1_0.projet_id=1
+1718720216739|3|statement|update etudiant set ecole_id=NULL,nom='Thai',prenom='Yvan 2' where etudiant_id=1
+1718720216743|0|statement|delete from etudiant_projet where projet_id=1
+1718720216745|0|statement|delete from etudiant_projet where projet_id=2
+1718720216748|1|statement|delete from etudiant_projet where etudiant_id=1
+1718720216751|0|statement|insert into etudiant_projet (etudiant_id,projet_id) values (1,1)
+1718720216752|0|statement|insert into etudiant_projet (etudiant_id,projet_id) values (1,2)
+1718720216756|0|commit|
