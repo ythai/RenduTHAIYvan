@@ -5,6 +5,7 @@ import com.exo2.Exercice2.entity.Etudiant;
 import com.exo2.Exercice2.mapper.EtudiantMapper;
 import com.exo2.Exercice2.repository.EtudiantRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +13,17 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class EtudiantService {
 
     private final EtudiantRepository etudiantRepository;
     private final EtudiantMapper etudiantMapper;
 
+    public EtudiantService(EtudiantRepository etudiantRepository, EtudiantMapper etudiantMapper) {
+        this.etudiantRepository = etudiantRepository;
+        this.etudiantMapper = etudiantMapper;
+    }
+
+    @Cacheable(value= "etudiants")
     public List<EtudiantDto> findAll() {
         return etudiantMapper.toDtos(etudiantRepository.findAll());
     }

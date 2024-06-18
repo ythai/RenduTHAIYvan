@@ -6,6 +6,7 @@ import com.exo2.Exercice2.mapper.EtudiantMapper;
 import com.exo2.Exercice2.mapper.ProjetMapper;
 import com.exo2.Exercice2.repository.ProjetRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class ProjetService {
     private ProjetRepository projetRepository;
     private ProjetMapper projetMapper;
     private EtudiantMapper etudiantMapper;
-
+    @Cacheable(value= "projets")
     public List<ProjetDto> findAll() {
         return  projetMapper.toDtos(projetRepository.findAll());
     }

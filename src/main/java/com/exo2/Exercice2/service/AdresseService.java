@@ -5,6 +5,7 @@ import com.exo2.Exercice2.entity.Adresse;
 import com.exo2.Exercice2.mapper.AdresseMapper;
 import com.exo2.Exercice2.repository.AdresseRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class AdresseService {
     private AdresseRepository adresseRepository;
     private AdresseMapper adresseMapper;
 
+    @Cacheable(value= "adresses")
     public List<AdresseDto> findAll()
     {
         return adresseMapper.toDtos(adresseRepository.findAll());

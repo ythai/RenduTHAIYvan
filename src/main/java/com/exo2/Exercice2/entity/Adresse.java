@@ -4,12 +4,16 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
-@Table(name = "adresse")
+@Table(name = "adresse", indexes = {
+        @Index(name = "index_ville", columnList = "ville")
+})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@BatchSize(size = 5)
 public class Adresse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

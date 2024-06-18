@@ -1,13 +1,13 @@
 package com.exo2.Exercice2;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootApplication
-@EnableCaching
-public class Exercice2Application {
-    public static void main(String[] args) {
-        SpringApplication.run(Exercice2Application.class, args);
-    }
+@SpringBootTest
+class Exercice2ApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
 }
